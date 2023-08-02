@@ -1,12 +1,6 @@
-// definimos un evento para el select, para saber si hay valor seleccionado o no
-let valorSeleccionado = ""
-const StateInput = document.getElementById("inputStateSelect")
-StateInput.childNodes.forEach(element => {
-    element.addEventListener("click",function () {
-        valorSeleccionado=StateInput.options[StateInput.selectedIndex].value;
-    })
-});
-
+const hello = ()=> {
+    console.log("hello world")
+}
 
 
 
@@ -17,7 +11,6 @@ function validarFormulario (event){
     let formStatus = false
     
     event.preventDefault()
-    console.log("form")
     // Obtenemos elementos html
     const CardInput = document.getElementById("inputCard")
     const CvcInput = document.getElementById("inputCvc")
@@ -25,9 +18,11 @@ function validarFormulario (event){
     const FirstNameInput = document.getElementById("inputFirstName")
     const LastNameInput = document.getElementById("inputLastName")
     const CityInput = document.getElementById("inputCity")
+    const StateInput = document.getElementById("inputStateSelect")
     const PostalCodeInput = document.getElementById("inputCodePostal")
     const message = document.getElementById("textArea")
-
+    
+    
     // obtenemos sus valores
     const valueCard = CardInput.value
     const valueCVC = CvcInput.value
@@ -37,6 +32,7 @@ function validarFormulario (event){
     const valueCity = CityInput.value
     const valueStatePostal = PostalCodeInput.value
     const valueMessage = message.value
+    const valorStateInput = StateInput.value
     // valor del select
 
 
@@ -97,7 +93,7 @@ function validarFormulario (event){
         formStatus = true
 
     }
-    if(valorSeleccionado === "Pick a state") {
+    if(valorStateInput === "Pick a state") {
         formStatus = false
         StateInput.classList.add("bg-danger","bg-opacity-25") 
     } else {
@@ -114,20 +110,24 @@ function validarFormulario (event){
 
     }
     if(valueMessage === "") {
+        console.log("vacio")
         formStatus = false
         message.classList.add("bg-danger","bg-opacity-25") 
     } else {
+        console.log("no vacio")
+
         message.classList.remove("bg-danger","bg-opacity-25") 
         formStatus = true
 
     }
-    console.log(StateInput)
     // validacion final del formulario, si todo esta bien 
     if(formStatus === true) {
         ErrorAlert.classList.add("d-none")
         console.log("Formulario apto para enviar")
     } else {
         ErrorAlert.classList.remove("d-none")
+        console.log("Formulario no apto para enviar")
+
 
     }
 
